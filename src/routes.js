@@ -18,7 +18,7 @@ export default (
     </Route>
     <Route path="dashboard" name="Dashboard" component={Full}>
       <IndexRoute name="Buscar" component={Search} />
-      <Route name="home" component={Dashboard} />
+      <Route path="home" name="Home" component={Dashboard} />
       <Route path="example" name="Example" component={Example} />
       <Route path="identificacao" name="Identificação" component={Identificacao} />
       <Route path="participacao-societaria" name="Participação Societária" component={ParticipacaoSocietaria} />

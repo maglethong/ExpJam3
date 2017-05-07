@@ -41,14 +41,14 @@ class Header extends Component {
                   activeClassName="active">Buscar</IndexLink>
           </li>
           <li className="nav-item px-3">
-            <Link to="/dashboard/home"
-            className="nav-link"
-            activeClassName="active">Principal</Link>
-          </li>
-          <li className="nav-item px-3">
             <Link to="/dashboard/identificacao"
             className="nav-link"
             activeClassName="active">Identificação</Link>
+          </li>
+          <li className="nav-item px-3">
+            <Link to="/dashboard/home"
+            className="nav-link"
+            activeClassName="active">Principal</Link>
           </li>
           <li className="nav-item px-3">
             <Link to="/dashboard/participacao-societaria"
