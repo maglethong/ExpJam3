@@ -1,6 +1,4 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
 import * as d3 from 'd3';
 
 import './StackedBar.css';
@@ -11,10 +9,22 @@ class StackedBar extends Component {
     showLegend: false
   }
 
-  componentDidMount() {
-    const { showLegend, ticks } = this.props;
+  componentWillReceiveProps(nextProps) {
+    const { range } = nextProps;
 
-    var svg = d3.select(this.node),
+    if (range) {
+      // this.x.domain(range.selection.map(range.x.invert, range.x));
+      // this.g.selectAll(".series")
+      //   .attr("x", function(d) { return this.x(d.data.State); })
+      //   .attr("y", function(d) { return this.y(d[1]); });
+      // this.g.select(".axis--x").call(this.x);
+    }
+  }
+
+  componentDidMount() {
+    const { id, showLegend, ticks } = this.props;
+
+    var svg = d3.select("#" + id),
       margin = {
         top: 20,
         right: 60,
@@ -27,16 +37,19 @@ class StackedBar extends Component {
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    this.g = g;
+
     var x = d3.scaleBand()
       .rangeRound([0, width])
       .padding(0.1)
       .align(0.1);
 
+    this.x = x;
+
     var y = d3.scaleLinear()
       .rangeRound([height, 0]);
 
-    // var z = d3.scaleOrdinal()
-      // .range(["#b4b719", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#d6164b"]);
+    this.y = y;
 
     var z = d3.scaleLinear().range(["#b4b719", "#f1c40f", "red"]);
 
@@ -114,8 +127,28 @@ class StackedBar extends Component {
           .text(function (d) {
             return d.key;
         });
+      } else {
+        const component = this;
+        var brush = d3.brushX()
+        .extent([[0, 0], [width, height]])
+        .on("brush", function () {
+          var selection = d3.event.selection;
+          component.props.onSelection({ selection, x, invert: x.invert });
+          // x.domain(selection.map(x.invert, x));
+          // console.log(selection.map(x.invert, x));
+          // g.selectAll(".series")
+          //   .attr("x", function(d) { return x; })
+          //   .attr("y", function(d) { return y; });
+          // g.select(".axis--x").call(x);
+        });
+
+        svg.append("g")
+        .attr("class", "brush")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .call(brush)
+        .call(brush.move, x.range());
       }
-    });
+    }.bind(this));
 
     function type(d, i, columns) {
       for (var j = 1, t = 0; j < columns.length; ++j) {
@@ -128,9 +161,9 @@ class StackedBar extends Component {
 
   render() {
     const { id, width, height } = this.props;
-    return ( 
+    return (
       <div className="animated fadeIn">
-        <svg ref={(node) => this.node = node } width={width} height={height}></svg>
+        <svg id={id} width={width} height={height}></svg>
       </div>
     )
   }
