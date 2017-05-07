@@ -13,38 +13,17 @@ class MirrorBar extends Component {
         height = +svg.attr("height") - margin.top - margin.bottom,
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var socios = [
-      {
-        "name": "Tio Patinhas",
-        "votante": 0.3,
-        "capital": 0.4,
-        "spc": 200
-      },{
-        "name": "Bruce Wayne",
-        "votante": 0.4,
-        "capital": 0.1,
-        "spc": 0
-      },{
-        "name": "Tony Stark",
-        "votante": 0.0,
-        "capital": 0.1,
-        "spc": 1200
-      },{
-        "name": "Capitão América",
-        "votante": 0.3,
-        "capital": 0.4,
-        "spc": 0
-      }
-    ];
+    const socios = this.props.data;
+    console.log(socios)
 
     var x = d3.scaleBand()
         .rangeRound([0, width])
         .padding(0.1)
         .align(0.1)
-        .domain([0,1,2,3]);
+        .domain(socios.map((d, i) => i));
 
     var yPos = d3.scaleLinear()
-        .domain([0,d3.max(socios.map((s) => Math.max(s.votante,s.capital)))])
+        .domain([0,d3.max(socios.map((s) => Math.max(s.votante,s.total)))])
         .range([height/2,0]);
 
     var yNeg = d3.scaleLinear()
@@ -79,16 +58,16 @@ class MirrorBar extends Component {
     series.append("rect")
         .attr("class","cap")
         .attr("x",(d,i) => x(d.index) + x.bandwidth()/2 + 5)
-        .attr("y",d => yPos(d.capital) -1)
+        .attr("y",d => yPos(d.total) -1)
         .attr("width", x.bandwidth()/2 - 30)
-        .attr("height", d => height/2 - yPos(d.capital))
+        .attr("height", d => height/2 - yPos(d.total))
         .attr("fill","green");
 
 
     g.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + (height) + ")")
-        .call(d3.axisBottom(x).tickFormat(d => socios[d].name));
+        .call(d3.axisBottom(x).tickFormat(d => socios[d].nome));
 
     g.append("g")
         .attr("class", "axis axis--y")

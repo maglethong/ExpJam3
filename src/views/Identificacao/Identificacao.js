@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Card, CardBlock, CardHeader, Table, Col, Row} from 'reactstrap';
+import report from '../../report';
 
 class Identificacao extends Component {
 
@@ -16,40 +17,7 @@ class Identificacao extends Component {
   }
 
   render() {
-
-    const data = {
-      "cnpj": "11.111.111/0001-04",
-      "razaoSocial": "EXPERIANCE JAM 3",
-      "tipoSociedade": "SOCIEDADE_EMPRESARIA_LIMITADA",
-      "registro": "X",
-      "dataRegistro": 1494097139,
-      "dataFundacao": 1494097138,
-      "nire": "xx.xxx.xxx.xxxx",
-      "endereco": {
-        "logradouro": "Av. Comendador Alfredo Maffei",
-        "numero": "1605",
-        "bairro": "Centro",
-        "cidade": "São Carlos",
-        "uf": "SP",
-        "cep": 12366123
-      },
-      "telefone": "011999999999",
-      "fax": "01141234567",
-      "web": "WWW.EJ3.COM.BR",
-      "situacaoCnpj": {
-        "status": "ATIVO",
-        "updatedAt": 1494097139
-      },
-      "filiais": ["Sao Paulo", "etc"],
-      "quantFiliais": 2,
-      "ramo": "GERAÇÃO_DE_IDEIAS_INOVADORAS",
-      "quantEmpregados": 450,
-      "codSerasa": "C-x",
-      "cnae": "x",
-      "opTributaria": "LUCRO_REAL",
-      "impSemCompras": 5,
-      "expSemCompras": 0
-    };
+    const data = report.identificacao;
 
     data.dataRegistro = this.formatTimestamp(data.dataRegistro);
     data.dataFundacao = this.formatTimestamp(data.dataFundacao);

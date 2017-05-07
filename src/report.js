@@ -1,4 +1,4 @@
-{
+const report = {
   "__legenda__": {
     "pma": "Prazo Médio de Atraso (em dias)",
     "irc": ""
@@ -108,9 +108,13 @@
         "cnpj": null,
         "entrada": 1494097139,
         "nacionalidade": "Brasil",
-        "votante": 0.0,
-        "total": 0.0,
-        "spc": null
+        "votante": 0.3,
+        "total": 0.2,
+        "spc": {
+          "quantidade": 0,
+          "valor": 200,
+          "updatedAt": 1494097139
+        }
       },
       {
         "nome": "Wayne Enterprise",
@@ -118,13 +122,65 @@
         "cnpj": "11.111.111/0001-04",
         "entrada": 1494097139,
         "nacionalidade": "Brasil",
-        "votante": 0.0,
-        "total": 0.0,
+        "votante": 0.1,
+        "total": 0.1,
         "spc": {
           "quantidade": 0,
-          "valor": 0.0,
+          "valor": 0,
           "updatedAt": 1494097139
         }
+      },
+      {
+        "nome": "Tony Stark",
+        "cpf": "100.200.300-00",
+        "cnpj": null,
+        "entrada": 1494097139,
+        "nacionalidade": "Brasil",
+        "votante": 0.0,
+        "total": 0.1,
+        "spc": {
+          "quantidade": 0,
+          "valor": 100,
+          "updatedAt": 1494097139
+        }
+      },
+      {
+        "nome": "Tony Stark",
+        "cpf": "100.200.300-00",
+        "cnpj": null,
+        "entrada": 1494097139,
+        "nacionalidade": "Brasil",
+        "votante": 0.1,
+        "total": 0.2,
+        "spc": {
+          "quantidade": 0,
+          "valor": 0,
+          "updatedAt": 1494097139
+        }
+      },
+      {
+        "nome": "Tony Stark",
+        "cpf": "100.200.300-00",
+        "cnpj": null,
+        "entrada": 1494097139,
+        "nacionalidade": "Brasil",
+        "votante": 0.2,
+        "total": 0.2,
+        "spc": {
+          "quantidade": 0,
+          "valor": 0,
+          "updatedAt": 1494097139
+        }
+      },
+      {
+        "nome": "Tony Stark",
+        "cpf": "100.200.300-00",
+        "cnpj": null,
+        "entrada": 1494097139,
+        "nacionalidade": "Brasil",
+        "votante": 0.3,
+        "total": 0.2,
+        "spc": null
       }
     ],
     "administracao": [
@@ -551,7 +607,7 @@
       "ano": 2016,
       "emAberto": 0,
       "aVencer": 4234
-    }
+    },
     {
       "mes": "JUL",
       "ano": 2016,
@@ -686,4 +742,6 @@
       "percentualPago": 89
     }
   ]
-}
+};
+
+export default report;
