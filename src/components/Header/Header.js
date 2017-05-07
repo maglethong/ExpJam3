@@ -37,8 +37,13 @@ class Header extends Component {
         <ul className="nav navbar-nav d-md-down-none mr-auto">
           <li className="nav-item px-3">
             <IndexLink to="/dashboard"
+                  className="nav-link"
+                  activeClassName="active">Buscar</IndexLink>
+          </li>
+          <li className="nav-item px-3">
+            <Link to="/dashboard/home"
             className="nav-link"
-            activeClassName="active">Principal</IndexLink>
+            activeClassName="active">Principal</Link>
           </li>
           <li className="nav-item px-3">
             <Link to="/dashboard/identificacao"
@@ -49,11 +54,6 @@ class Header extends Component {
             <Link to="/dashboard/participacao-societaria"
             className="nav-link"
             activeClassName="active">Participação Societária</Link>
-          </li>
-          <li className="nav-item px-3">
-            <Link to="/dashboard/search"
-                  className="nav-link"
-                  activeClassName="active">Buscar</Link>
           </li>
         </ul>
       </header>

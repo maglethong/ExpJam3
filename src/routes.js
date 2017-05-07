@@ -17,11 +17,11 @@ export default (
       <IndexRoute component={Login} />
     </Route>
     <Route path="dashboard" name="Dashboard" component={Full}>
-      <IndexRoute name="dashboard" component={Dashboard}/>
-      <Route path="example" name="Example" component={Example}/>
-      <Route path="identificacao" name="Identificação" component={Identificacao}/>
-      <Route path="participacao-societaria" name="Participação Societária" component={ParticipacaoSocietaria}/>
-      <Route path="search" name="Buscar" component={Search}/>
+      <IndexRoute name="Buscar" component={Search} />
+      <Route name="home" component={Dashboard} />
+      <Route path="example" name="Example" component={Example} />
+      <Route path="identificacao" name="Identificação" component={Identificacao} />
+      <Route path="participacao-societaria" name="Participação Societária" component={ParticipacaoSocietaria} />
     </Route>
   </Router>
 );
