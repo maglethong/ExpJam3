@@ -4,6 +4,7 @@ import report from '../../report';
 
 import {
   StackedBar,
+  BarLine
   // MirrorBar 
 } from 'components/Viz';
 
@@ -24,9 +25,6 @@ class Dashboard extends Component {
         <Row>
           <Col className="text-center">
           <Card>
-            <CardHeader>
-              Filtro por tempo
-            </CardHeader>
 
             <CardBlock>
               <StackedBar
@@ -43,26 +41,65 @@ class Dashboard extends Component {
           <Col md="6">
             <Card>
               <CardHeader>
-                Histórico de Pagamentos
+                Financeiro - Histórico de Pagamentos
               </CardHeader>
               <CardBlock>
-                <p className="text-right">
-                  <label>Tempo: <select className="form-control">
-                    <option>6 meses</option>
-                    <option>12 meses</option>
-                    <option>2 anos</option>
-                  </select></label>
-                </p>
                 <StackedBar
                 range={range}
                 id="stacked-2"
                 showLegend
                 width="900"
-                height="500" data={report.historicoCompromissosParceladosPagos} />
+                height="300" data={report.historicoCompromissosParceladosPagos} />
               </CardBlock>
             </Card>
           </Col>
           <Col md="6">
+            <Card>
+              <CardHeader>
+                Mercantil - Histórico de Pagamentos
+              </CardHeader>
+              <CardBlock>
+                <StackedBar
+                    range={range}
+                    id="stacked-3"
+                    showLegend
+                    width="900"
+                    height="300" data={report.historicoPagamentosMercado} />
+              </CardBlock>
+            </Card>
+
+          </Col>
+        </Row>
+        <Row>
+          <Col md="6">
+            <Card>
+              <CardHeader>
+                Financeiro - Histórico de Compromissos Parcelados
+              </CardHeader>
+              <CardBlock>
+                <BarLine
+                    range={range}
+                    id="bar-1"
+                    showLegend
+                    width="900"
+                    height="300" data={report.historicoCompromissosParceladosAndamento} />
+              </CardBlock>
+            </Card>
+          </Col>
+          <Col md="6">
+            <Card>
+              <CardHeader>
+                Mercantil - Histórico de Pagamentos
+              </CardHeader>
+              <CardBlock>
+                <BarLine
+                    range={range}
+                    id="bar-2"
+                    showLegend
+                    width="900"
+                    height="300" data={report.evolucaoCompromissoMercado} />
+              </CardBlock>
+            </Card>
 
           </Col>
         </Row>

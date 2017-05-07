@@ -6,7 +6,7 @@ import './Legend.css';
 class Legend extends Component {
 
     componentDidMount () {
-        const svg = d3.select(this.node);
+        const svg = d3.select("#" + this.props.id);
         svg.selectAll("legend-serie")
             .data(this.props.classes)
             .enter()
@@ -32,7 +32,9 @@ class Legend extends Component {
 
     render () {
         return (
-            <g className='legend' ref={(node) => this.node = node } transform={"translate(" + this.props.x + "," + this.props.y + ")"} ></g>
+            <g className='legend' id={this.props.id} transform={"translate(" + this.props.x + "," + this.props.y + ")"} >
+
+            </g>
         );
     }
 }

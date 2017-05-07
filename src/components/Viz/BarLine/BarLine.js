@@ -4,9 +4,9 @@ import * as d3 from 'd3';
 
 import { Legend } from 'components/Viz';
 
-import './StackedBar.css';
+import './BarLine.css';
 
-class StackedBar extends Component {
+class BarLine extends Component {
   static defaultProps = {
     ticks: 10,
     showLegend: false
@@ -28,14 +28,14 @@ class StackedBar extends Component {
 
     const bottom = showLegend ? 60 : 20;
 
-      d3.select("#" + id).select(".chart").remove();
+    d3.select("#" + id).select(".chart").remove();
 
     var svg = d3.select("#" + id),
         margin = {
           top: 20,
           right: 60,
           bottom,
-          left: 40
+          left: 50
         },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
@@ -58,22 +58,22 @@ class StackedBar extends Component {
 
     this.y = y;
 
-    var z = d3.scaleOrdinal().range(["#b4b719", "#f1c40f", "#f5930d", "#f8640a", "#fc3306"]);
+    var z = d3.scaleOrdinal().range(["#b4b719", "#fc3306"]);
 
     var stack = d3.stack()
         .offset(d3.stackOffsetExpand);
+
 
     var data = this.props.data.filter((d,i) => i >= range[0] && i <= range[1]).map((d,i) => {
         return {
             "index": i,
             "label": d.mes + "/" + d.ano,
-            "pontual": d.pontual.normalizado,
-            "8-15": d["8-15"].normalizado,
-            "16-30": d["16-30"].normalizado,
-            "31-60": d["31-60"].normalizado,
-            "60+": d["60+"].normalizado
+            "emAberto": d.emAberto,
+            "aVencer": d.aVencer
         }
     });
+
+      y.domain([0,12000]);
     //d3.csv("data.csv", type, function (error, data) {
     //  if (error) throw error;
 
@@ -85,11 +85,11 @@ class StackedBar extends Component {
       //data.columns = columnsAux;
 
       x.domain(data.map((d,i) => d.label));
-      z.domain(["pontual","8-15","16-30","31-60","60+"]);
+      z.domain(["aVencer","emAberto"]);
 
       data.forEach(function (d) {
           var y0 = 0;
-          d.atraso = z.domain().map((name) => { return { name: name, y0: y0, y1: y0 += +d[name] }; });
+          d.atraso = z.domain().map((name) => { return { name: name, y0: y0, y1: +d[name] }; });
           //d.total = d.ages[d.ages.length - 1].y1;
       });
 
@@ -105,14 +105,14 @@ class StackedBar extends Component {
       serie.selectAll("rect")
           .data(d => d.atraso)
           .enter().append("rect")
-          .attr("x", "0")
+          .attr("x", d => d.name =="aVencer" ? 1+(x.bandwidth()/2) : "1")
           .attr("y", function (d) {
-            return y(d.y1/100);
+            return y(d.y1);
           })
           .attr("height", function (d) {
-            return y(d.y0/100) - y(d.y1/100);
+            return y(d.y0) - y(d.y1);
           })
-          .attr("width", x.bandwidth())
+          .attr("width", x.bandwidth()/2)
           .style("fill", function (d) { return z(d.name); });
 
       g.append("g")
@@ -121,13 +121,13 @@ class StackedBar extends Component {
           .call(
               d3.axisBottom(x)
                   .tickValues(x.domain().filter(function(d, i) {
-                    return (x.domain().length > 12) ? !(i % 3) : true;
+                      return (x.domain().length > 12) ? !(i % 3) : true;
                   }))
           );
 
       g.append("g")
           .attr("class", "axis axis--y")
-          .call(d3.axisLeft(y).ticks(ticks, "%"));
+          .call(d3.axisLeft(y).ticks(ticks).tickFormat(d => "R$ " + d));
 
       //var legend = serie.append("g")
       //    .attr("class", "legend")
@@ -195,21 +195,18 @@ class StackedBar extends Component {
     const { id, width, height, showLegend } = this.props;
 
     const classes = [
-      {color: "#b4b71b", name: "Pontual"},
-      {color: "#f1c411", name: "8 a 15"},
-      {color: "#f5930d", name: "16 a 30"},
-      {color: "#f8640a", name: "31 a 60"},
-      {color: "#fc3306", name: "60+"}
+      {color: "#b4b71b", name: "A vencer"},
+      {color: "#fc3306", name: "Em aberto"},
     ];
 
     return (
       <div className="animated fadeIn">
         <svg id={id} width={width} height={height}>
-          {showLegend && <Legend classes={classes} id={"legend-" + id} x="0" y={"" + height - 20} gap="100" />}
+          <Legend classes={classes} id={"legend-" + id} x="0" y={"" + height - 20} gap="100" />
         </svg>
       </div>
     )
   }
 }
 
-export default StackedBar;
+export default BarLine;

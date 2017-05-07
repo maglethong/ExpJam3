@@ -43,7 +43,7 @@ class MirrorBar extends Component {
         .attr("y",d => height/2 + 1)
         .attr("width", x.bandwidth() - 45)
         .attr("height", d => yNeg(d.spc))
-        .attr("fill","red");
+        .attr("fill","#c0392b");
 
 
     series.append("rect")
@@ -52,7 +52,7 @@ class MirrorBar extends Component {
         .attr("y",d => yPos(d.votante) -1)
         .attr("width", x.bandwidth()/2 - 30)
         .attr("height", d => height/2 - yPos(d.votante))
-        .attr("fill","blue");
+        .attr("fill","#2980b9");
 
     series.append("rect")
         .attr("class","cap")
@@ -60,7 +60,7 @@ class MirrorBar extends Component {
         .attr("y",d => yPos(d.total) -1)
         .attr("width", x.bandwidth()/2 - 30)
         .attr("height", d => height/2 - yPos(d.total))
-        .attr("fill","green");
+        .attr("fill","#16a085");
 
 
     g.append("g")
@@ -83,9 +83,9 @@ class MirrorBar extends Component {
   render() {
     const { id } = this.props;
     const classes = [
-      {color: "blue", name: "Participação Votante"},
-      {color: "green", name: "Participação Capital"},
-      {color: "red", name: "SPC Pessoa Física"}
+      {color: "#2980b9", name: "Participação Votante"},
+      {color: "#16a085", name: "Participação Capital"},
+      {color: "#c0392b", name: "SPC Pessoa Física"}
     ];
 
     return (
