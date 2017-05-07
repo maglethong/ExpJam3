@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 
+import { Legend } from 'components/Viz';
+
 import './StackedBar.css';
 
 class StackedBar extends Component {
@@ -24,11 +26,13 @@ class StackedBar extends Component {
   componentDidMount() {
     const { id, showLegend, ticks } = this.props;
 
+    const bottom = showLegend ? 60 : 20;
+
     var svg = d3.select("#" + id),
       margin = {
         top: 20,
         right: 60,
-        bottom: 30,
+        bottom,
         left: 40
       },
       width = +svg.attr("width") - margin.left - margin.right,
@@ -114,19 +118,19 @@ class StackedBar extends Component {
         });
 
       if (showLegend) {
-        legend.append("line")
-          .attr("x1", -6)
-          .attr("x2", 6)
-          .attr("stroke", "#000");
+        // legend.append("line")
+        //   .attr("x1", -6)
+        //   .attr("x2", 6)
+        //   .attr("stroke", "#000");
 
-        legend.append("text")
-          .attr("x", 9)
-          .attr("dy", "0.35em")
-          .attr("fill", "#000")
-          .style("font", "10px sans-serif")
-          .text(function (d) {
-            return d.key;
-        });
+        // legend.append("text")
+        //   .attr("x", 9)
+        //   .attr("dy", "0.35em")
+        //   .attr("fill", "#000")
+        //   .style("font", "10px sans-serif")
+        //   .text(function (d) {
+        //     return d.key;
+        // });
       } else {
         const component = this;
         var brush = d3.brushX()
@@ -160,10 +164,21 @@ class StackedBar extends Component {
   }
 
   render() {
-    const { id, width, height } = this.props;
+    const { id, width, height, showLegend } = this.props;
+
+    const classes = [
+      {color: "#b4b71b", name: "Pontual"},
+      {color: "#f1c411", name: "8 a 15"},
+      {color: "#f5930d", name: "16 a 30"},
+      {color: "#f8640a", name: "31 a 60"},
+      {color: "#fc3306", name: "60+"}
+    ];
+
     return (
       <div className="animated fadeIn">
-        <svg id={id} width={width} height={height}></svg>
+        <svg id={id} width={width} height={height}>
+          {showLegend && <Legend classes={classes} x="0" y={"" + height - 20} gap="100" />}
+        </svg>
       </div>
     )
   }

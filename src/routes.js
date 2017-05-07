@@ -10,7 +10,7 @@ import Identificacao from 'views/Identificacao';
 export default (
   <Router history={hashHistory}>
     <Route path="/" name="Home" component={Full}>
-      <IndexRoute component={Dashboard}/>
+      <IndexRoute component={Login} />
       <Route path="example" name="Example" component={Example}/>
       <Route path="identificacao" name="Identificacao" component={Identificacao}/>
     </Route>

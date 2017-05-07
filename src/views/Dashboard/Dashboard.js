@@ -30,7 +30,7 @@ class Dashboard extends Component {
                 id="stacked-1"
                 ticks={2}
                 width="300"
-                height="100" />
+                height="120" />
             </CardBlock>
           </Card>
           </Col>
