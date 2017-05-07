@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardBlock, CardHeader, Col, Row } from 'reactstrap';
 
-import { StackedBar } from 'components/Viz';
+import { StackedBar,MirrorBar } from 'components/Viz';
 
 class Dashboard extends Component {
 
@@ -23,16 +23,16 @@ class Dashboard extends Component {
           <Col xl="4">
             <Card>
               <CardHeader>
-                Algo a mais
+                Participação Societaria
               </CardHeader>
-
               <CardBlock>
-                
+                  <MirrorBar />
               </CardBlock>
             </Card>
           </Col>
         </Row>
       </div>
+
     )
   }
 }

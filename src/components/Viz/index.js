@@ -1,3 +1,4 @@
 import StackedBar from './StackedBar';
+import MirrorBar from './MirrorBar';
 
-export { StackedBar };
+export { StackedBar, MirrorBar };
