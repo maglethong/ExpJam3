@@ -22,13 +22,15 @@
     "tipoSociedade": "SOCIEDADE_EMPRESARIA_LIMITADA",
     "registro": "X",
     "dataRegistro": 1494097139,
+    "dataFundacao": 1494097138,
     "nire": "xx.xxx.xxx.xxxx",
     "endereco": {
       "logradouro": "Av. Comendador Alfredo Maffei",
       "numero": "1605",
       "bairro": "Centro",
       "cidade": "São Carlos",
-      "estado": "São Paulo"
+      "uf": "SP",
+      "cep": 12366123
     },
     "telefone": "011999999999",
     "fax": "01141234567",
@@ -39,11 +41,11 @@
     },
     "filiais": ["Sao Paulo", "etc"],
     "quantFiliais": 2,
-    "ramo": "GERAÇAO DE IDEIAS INOVADORAS",
+    "ramo": "GERAÇÃO_DE_IDEIAS_INOVADORAS",
     "quantEmpregados": 450,
     "codSerasa": "C-x",
     "cnae": "x",
-    "opTributaria": "LUCRO REAL",
+    "opTributaria": "LUCRO_REAL",
     "impSemCompras": 5,
     "expSemCompras": 0
   },
