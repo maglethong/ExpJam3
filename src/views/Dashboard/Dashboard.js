@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardBlock, CardHeader, Col, Row } from 'reactstrap';
+import report from '../../report';
 
 import {
   StackedBar,
@@ -17,14 +18,14 @@ class Dashboard extends Component {
 
   render() {
     const { range } = this.state;
-     
+
     return (
       <div className="animated fadeIn">
         <Row>
           <Col className="text-center">
           <Card>
             <CardHeader>
-              Histórico de Pagamentos
+              Filtro por tempo
             </CardHeader>
 
             <CardBlock>
@@ -33,7 +34,7 @@ class Dashboard extends Component {
                 id="stacked-1"
                 ticks={2}
                 width="900"
-                height="120" />
+                height="120" data={report.historicoCompromissosParceladosPagos} />
             </CardBlock>
           </Card>
           </Col>
@@ -56,8 +57,8 @@ class Dashboard extends Component {
                 range={range}
                 id="stacked-2"
                 showLegend
-                width="650"
-                height="500" />
+                width="900"
+                height="500" data={report.historicoCompromissosParceladosPagos} />
               </CardBlock>
             </Card>
           </Col>

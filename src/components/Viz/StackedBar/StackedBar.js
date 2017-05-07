@@ -57,50 +57,64 @@ class StackedBar extends Component {
 
     this.y = y;
 
-    var z = d3.scaleLinear().range(["#b4b719", "#f1c40f", "red"]);
+    var z = d3.scaleOrdinal().range(["#b4b719", "#f1c40f", "#f5930d", "#f8640a", "#fc3306"]);
 
     var stack = d3.stack()
         .offset(d3.stackOffsetExpand);
 
-    d3.csv("data.csv", type, function (error, data) {
-      if (error) throw error;
+      console.log(this.props.data.filter((d,i) => i >= range[0] && i <= range[1]));
+
+    var data = this.props.data.filter((d,i) => i >= range[0] && i <= range[1]).map((d,i) => {
+        return {
+            "index": i,
+            "label": d.mes + "/" + d.ano,
+            "pontual": d.pontual.normalizado,
+            "8-15": d["8-15"].normalizado,
+            "16-30": d["16-30"].normalizado,
+            "31-60": d["31-60"].normalizado,
+            "60+": d["60+"].normalizado
+        }
+    });
+    //d3.csv("data.csv", type, function (error, data) {
+    //  if (error) throw error;
 
 
       //data.sort(function (a, b) {
       //  return b[data.columns[1]] / b.total - a[data.columns[1]] / a.total;
       //});
-      var columnsAux = data.columns;
-      data = data.filter((d,i) => i >= range[0] && i <= range[1]);
-      data.columns = columnsAux;
+      //var columnsAux = data.columns;
+      //data.columns = columnsAux;
 
-      x.domain(data.map(function (d,i) {
-        return d.State;
-      }));
-      z.domain([0, 1, data.columns.length - 1]);
+      x.domain(data.map((d,i) => d.label));
+      z.domain(["pontual","8-15","16-30","31-60","60+"]);
 
+      data.forEach(function (d) {
+          var y0 = 0;
+          d.atraso = z.domain().map((name) => { return { name: name, y0: y0, y1: y0 += +d[name] }; });
+          //d.total = d.ages[d.ages.length - 1].y1;
+      });
+
+      //d3.keys(data[0]).filter(k => k != "index" && k != "label")
       var serie = g.selectAll(".serie")
-          .data(stack.keys(data.columns.slice(1))(data))
+          .data(data)
           .enter().append("g")
           .attr("class", "serie")
-          .attr("fill", function (d, i) {
-            return z(i);
+          .attr("transform",(d,i) => {
+            return "translate(" + x(d.label) + ",0)";
           });
 
       serie.selectAll("rect")
-          .data(function (d) {
-            return d;
-          })
+          .data(d => d.atraso)
           .enter().append("rect")
-          .attr("x", function (d) {
-            return x(d.data.State);
-          })
+          .attr("x", "0")
           .attr("y", function (d) {
-            return y(d[1]);
+            return y(d.y1/100);
           })
           .attr("height", function (d) {
-            return y(d[0]) - y(d[1]);
+            return y(d.y0/100) - y(d.y1/100);
           })
-          .attr("width", x.bandwidth());
+          .attr("width", x.bandwidth())
+          .style("fill", function (d) { return z(d.name); });
 
       g.append("g")
           .attr("class", "axis axis--x")
@@ -116,12 +130,12 @@ class StackedBar extends Component {
           .attr("class", "axis axis--y")
           .call(d3.axisLeft(y).ticks(ticks, "%"));
 
-      var legend = serie.append("g")
-          .attr("class", "legend")
-          .attr("transform", function (d) {
-            var d = d[d.length - 1];
-            return "translate(" + (x(d.data.State) + x.bandwidth()) + "," + ((y(d[0]) + y(d[1])) / 2) + ")";
-          });
+      //var legend = serie.append("g")
+      //    .attr("class", "legend")
+      //    .attr("transform", function (d) {
+      //      var d = d[d.length - 1];
+      //      return "translate(" + (x(d.data.State) + x.bandwidth()) + "," + ((y(d[0]) + y(d[1])) / 2) + ")";
+      //    });
 
       if (showLegend) {
         // legend.append("line")
@@ -163,7 +177,7 @@ class StackedBar extends Component {
             .call(brush)
             .call(brush.move, x.range());
       }
-    }.bind(this));
+    //}.bind(this));
 
     function type(d, i, columns) {
       for (var j = 1, t = 0; j < columns.length; ++j) {
