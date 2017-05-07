@@ -8,6 +8,7 @@ import Dashboard from 'views/Dashboard';
 import Login from 'views/Login';
 import Example from 'views/Example';
 import Identificacao from 'views/Identificacao';
+import ParticipacaoSocietaria from 'views/ParticipacaoSocietaria';
 
 export default (
   <Router history={hashHistory}>
@@ -18,6 +19,7 @@ export default (
       <IndexRoute name="dashboard" component={Dashboard}/>
       <Route path="example" name="Example" component={Example}/>
       <Route path="identificacao" name="Identificação" component={Identificacao}/>
+      <Route path="participacao-societaria" name="Participação Societária" component={ParticipacaoSocietaria}/>
     </Route>
   </Router>
 );
