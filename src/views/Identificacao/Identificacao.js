@@ -2,31 +2,32 @@ import React, {Component} from 'react';
 import {Card, CardBlock, CardHeader, Table, Col, Row} from 'reactstrap';
 import report from '../../report';
 
+function formatTimestamp(timestamp) {
+  let date = new Date(timestamp * 1000);
+  return date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
+}
+
+function formatEnum(value) {
+  return value
+      .split('_')
+      .join(' ')
+      .toLowerCase()
+      .replace(/\b\w/g, l => l.toUpperCase());
+}
+
+const data = report.identificacao;
+
+data.dataRegistro = formatTimestamp(data.dataRegistro);
+data.dataFundacao = formatTimestamp(data.dataFundacao);
+data.situacaoCnpj.updatedAt = formatTimestamp(data.situacaoCnpj.updatedAt);
+data.situacaoCnpj.status = formatEnum(data.situacaoCnpj.status);
+data.tipoSociedade = formatEnum(data.tipoSociedade);
+data.ramo = formatEnum(data.ramo);
+data.opTributaria = formatEnum(data.opTributaria);
+data.filiais = data.filiais.join(", ");
+
 class Identificacao extends Component {
-
-  formatTimestamp(timestamp) {
-    let date = new Date(timestamp * 1000);
-    return date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
-  }
-  formatEnum(value) {
-    return value
-        .split('_')
-        .join(' ')
-        .toLowerCase()
-        .replace(/\b\w/g, l => l.toUpperCase());
-  }
-
   render() {
-    const data = report.identificacao;
-
-    data.dataRegistro = this.formatTimestamp(data.dataRegistro);
-    data.dataFundacao = this.formatTimestamp(data.dataFundacao);
-    data.situacaoCnpj.updatedAt = this.formatTimestamp(data.situacaoCnpj.updatedAt);
-    data.situacaoCnpj.status = this.formatEnum(data.situacaoCnpj.status);
-    data.tipoSociedade = this.formatEnum(data.tipoSociedade);
-    data.ramo = this.formatEnum(data.ramo);
-    data.opTributaria = this.formatEnum(data.opTributaria);
-    data.filiais = data.filiais.join(", ");
 
     return (
         <div className="animated fadeIn">

@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import {Card, CardBlock, CardHeader, Col, Row} from 'reactstrap';
 import report from '../../report';
 
-import {StackedBar, MirrorBar} from 'components/Viz';
+import { StackedBar, MirrorBar } from 'components/Viz';
+
+const socios = report.controleSocietario.socios.map(s => {
+  s.spc = s.spc === null ? 0 : s.spc.valor;
+  return s;
+});
 
 class ParticipacaoSocietaria extends Component {
   state = {
@@ -10,12 +15,6 @@ class ParticipacaoSocietaria extends Component {
   };
 
   render() {
-
-    const socios = report.controleSocietario.socios.map(s => {
-      s.spc = s.spc === null ? 0 : s.spc.valor;
-      return s;
-    });
-
     return (
         <div className="animated fadeIn">
           <Row>
