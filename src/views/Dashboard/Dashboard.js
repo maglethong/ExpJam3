@@ -29,7 +29,7 @@ class Dashboard extends Component {
                 onSelection={this.handleSelection}
                 id="stacked-1"
                 ticks={2}
-                width="300"
+                width="900"
                 height="120" />
             </CardBlock>
           </Card>
