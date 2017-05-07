@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("asd");
     this.props.router.push('/dashboard');
   }
 
