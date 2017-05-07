@@ -48,7 +48,7 @@ class MirrorBar extends Component {
         .range([height/2,0]);
 
     var yNeg = d3.scaleLinear()
-        .domain(d3.extent(socios.map((s) => s.spc)))
+        .domain([0,d3.max(socios.map((s) => s.spc))])
         .range([0,height/2]);
 
     var series = g.selectAll(".serie")
@@ -61,18 +61,18 @@ class MirrorBar extends Component {
 
     series.append("rect")
         .attr("class","neg")
-        .attr("x",(d,i) => x(d.index))
+        .attr("x",(d,i) => x(d.index) + 20)
         .attr("y",d => height/2 + 1)
-        .attr("width", x.bandwidth())
+        .attr("width", x.bandwidth() - 45)
         .attr("height", d => yNeg(d.spc))
         .attr("fill","red");
 
 
     series.append("rect")
         .attr("class","vot")
-        .attr("x",(d,i) => x(d.index))
+        .attr("x",(d,i) => x(d.index) + 20)
         .attr("y",d => yPos(d.votante) -1)
-        .attr("width", x.bandwidth()/2 - 5)
+        .attr("width", x.bandwidth()/2 - 30)
         .attr("height", d => height/2 - yPos(d.votante))
         .attr("fill","blue");
 
@@ -80,7 +80,7 @@ class MirrorBar extends Component {
         .attr("class","cap")
         .attr("x",(d,i) => x(d.index) + x.bandwidth()/2 + 5)
         .attr("y",d => yPos(d.capital) -1)
-        .attr("width", x.bandwidth()/2 - 5)
+        .attr("width", x.bandwidth()/2 - 30)
         .attr("height", d => height/2 - yPos(d.capital))
         .attr("fill","green");
 
@@ -96,8 +96,9 @@ class MirrorBar extends Component {
 
     g.append("g")
         .attr("class", "axis axis--y2")
+        .attr("width",width)
         .attr("transform", "translate(" + width + "," + (height/2 ) + ")")
-        .call(d3.axisRight(yNeg));
+        .call(d3.axisRight(yNeg).tickFormat(d => "R$ " + d));
 
   }
 
