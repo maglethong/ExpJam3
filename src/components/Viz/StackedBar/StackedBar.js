@@ -6,8 +6,15 @@ import * as d3 from 'd3';
 import './StackedBar.css';
 
 class StackedBar extends Component {
+  static defaultProps = {
+    ticks: 10,
+    showLegend: false
+  }
+
   componentDidMount() {
-    var svg = d3.select("svg"),
+    const { showLegend, ticks } = this.props;
+
+    var svg = d3.select(this.node),
       margin = {
         top: 20,
         right: 60,
@@ -75,11 +82,16 @@ class StackedBar extends Component {
       g.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+        .call(
+          d3.axisBottom(x)
+          .tickValues(x.domain().filter(function(d, i) { 
+            return !showLegend ? !(i % 3) : true;
+          }))
+        );
 
       g.append("g")
         .attr("class", "axis axis--y")
-        .call(d3.axisLeft(y).ticks(10, "%"));
+        .call(d3.axisLeft(y).ticks(ticks, "%"));
 
       var legend = serie.append("g")
         .attr("class", "legend")
@@ -88,19 +100,21 @@ class StackedBar extends Component {
           return "translate(" + (x(d.data.State) + x.bandwidth()) + "," + ((y(d[0]) + y(d[1])) / 2) + ")";
         });
 
-      legend.append("line")
-        .attr("x1", -6)
-        .attr("x2", 6)
-        .attr("stroke", "#000");
+      if (showLegend) {
+        legend.append("line")
+          .attr("x1", -6)
+          .attr("x2", 6)
+          .attr("stroke", "#000");
 
-      legend.append("text")
-        .attr("x", 9)
-        .attr("dy", "0.35em")
-        .attr("fill", "#000")
-        .style("font", "10px sans-serif")
-        .text(function (d) {
-          return d.key;
+        legend.append("text")
+          .attr("x", 9)
+          .attr("dy", "0.35em")
+          .attr("fill", "#000")
+          .style("font", "10px sans-serif")
+          .text(function (d) {
+            return d.key;
         });
+      }
     });
 
     function type(d, i, columns) {
@@ -113,9 +127,10 @@ class StackedBar extends Component {
   }
 
   render() {
+    const { id, width, height } = this.props;
     return ( 
-      <div className = "animated fadeIn">
-        <svg width="650" height="500"></svg>
+      <div className="animated fadeIn">
+        <svg ref={(node) => this.node = node } width={width} height={height}></svg>
       </div>
     )
   }
