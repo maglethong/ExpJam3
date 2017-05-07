@@ -35,9 +35,6 @@ class Header extends Component {
         <button className="navbar-toggler mobile-sidebar-toggler d-lg-none" onClick={this.mobileSidebarToggle} type="button">&#9776;</button>
         <a className="navbar-brand" href="#"></a>
         <ul className="nav navbar-nav d-md-down-none mr-auto">
-          <li>
-            <Search />
-          </li>
           <li className="nav-item px-3">
             <IndexLink to="/dashboard"
             className="nav-link"
@@ -53,10 +50,10 @@ class Header extends Component {
             className="nav-link"
             activeClassName="active">Participação Societária</Link>
           </li>
-          <li>
-            <Link to="/example"
-            className="nav-link"
-            activeClassName="active">Example</Link>
+          <li className="nav-item px-3">
+            <Link to="/dashboard/search"
+                  className="nav-link"
+                  activeClassName="active">Buscar</Link>
           </li>
         </ul>
       </header>

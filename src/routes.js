@@ -9,6 +9,7 @@ import Login from 'views/Login';
 import Example from 'views/Example';
 import Identificacao from 'views/Identificacao';
 import ParticipacaoSocietaria from 'views/ParticipacaoSocietaria';
+import Search from 'views/Search';
 
 export default (
   <Router history={hashHistory}>
@@ -20,6 +21,7 @@ export default (
       <Route path="example" name="Example" component={Example}/>
       <Route path="identificacao" name="Identificação" component={Identificacao}/>
       <Route path="participacao-societaria" name="Participação Societária" component={ParticipacaoSocietaria}/>
+      <Route path="search" name="Buscar" component={Search}/>
     </Route>
   </Router>
 );
