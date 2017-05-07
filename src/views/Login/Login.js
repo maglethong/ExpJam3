@@ -14,8 +14,8 @@ class Login extends Component {
             <div className="card-group mb-0">
               <div className="card p-4">
                 <div className="card-block">
-                  <h1>Acesso a produtos</h1>
-                  <p className="text-muted">Para acessar os produtos Serasa Experian, preencha os campos abaixo:</p>
+                  <h1>Acesso ferramenta</h1>
+                  <p className="text-muted">Para acessar <b>a melhor ferramenta de análise do mercado</b>, preencha abaixo:</p>
                   <form onSubmit={this.handleSubmit}>
                     <div className="input-group mb-3">
                       <span className="input-group-addon"><i className="icon-user"></i></span>

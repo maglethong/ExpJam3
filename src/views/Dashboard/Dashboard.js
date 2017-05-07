@@ -10,33 +10,62 @@ import {
 
 class Dashboard extends Component {
   state = {
-    range: null
+    range: null,
+    brushRange: [680, 800]
   }
 
   handleSelection = (range) => {
     this.setState({ range });
   }
 
+  handleChange = (e) => {
+    let brushRange;
+    switch (e.target.value) {
+      case "2":
+        brushRange = [500, 800]
+      break;
+      case "3":
+        brushRange = [250, 800]
+      break;
+      default:
+        brushRange = [680, 800]
+    }
+
+    this.setState({ brushRange });
+  }
+
   render() {
-    const { range } = this.state;
+    const { range, brushRange } = this.state;
 
     return (
       <div className="animated fadeIn">
-        <Row>
-          <Col className="text-center">
-          <Card>
-
-            <CardBlock>
-              <StackedBar
-                onSelection={this.handleSelection}
-                id="stacked-1"
-                ticks={2}
-                width="900"
-                height="120" data={report.historicoCompromissosParceladosPagos} />
-            </CardBlock>
-          </Card>
-          </Col>
-        </Row>
+        <div className="row">
+          <div className="col text-center">
+            <Card>
+              <CardHeader>
+                Filtro por tempo
+                <div className="float-right">
+                  <label>
+                    <select className="form-control" onChange={this.handleChange}>
+                    <option value="1">6 meses</option>
+                    <option value="2">12 meses</option>
+                    <option value="3">2 anos</option>
+                  </select>
+                  </label>
+                </div>
+              </CardHeader>
+              <CardBlock>
+                <StackedBar
+                  onSelection={this.handleSelection}
+                  brushRange={brushRange}
+                  id="stacked-1"
+                  ticks={2}
+                  width="900"
+                  height="120" data={report.historicoCompromissosParceladosPagos} />
+              </CardBlock>
+            </Card>
+          </div>
+        </div>
         <Row>
           <Col md="6">
             <Card>
@@ -100,11 +129,9 @@ class Dashboard extends Component {
                     height="300" data={report.evolucaoCompromissoMercado} />
               </CardBlock>
             </Card>
-
           </Col>
         </Row>
       </div>
-
     )
   }
 }

@@ -90,8 +90,8 @@ class MirrorBar extends Component {
 
     return (
       <div className="animated fadeIn">
-        <svg id={id} className="mirrorChart" width="660" height="600">
-          <Legend classes={classes} x="0" y="580" gap="160" />
+        <svg id={id} className="mirrorChart" width="1000" height="600">
+          <Legend id={"legend-"+id} classes={classes} x="0" y="580" gap="200" />
         </svg>
       </div>
     )

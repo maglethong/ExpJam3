@@ -9,11 +9,17 @@ import './StackedBar.css';
 class StackedBar extends Component {
   static defaultProps = {
     ticks: 10,
-    showLegend: false
+    showLegend: false,
+    brushRange: null
   }
 
   componentWillReceiveProps(nextProps) {
-    const { range } = nextProps;
+    const { id, range, brushRange } = nextProps;
+
+    if (brushRange) {
+      // console.log(brushRange);
+      // this.g.select(".brush").call(this.brush, brushRange);
+    }
 
     if (range) {
       this.renderChart(range);
@@ -24,7 +30,8 @@ class StackedBar extends Component {
     if (range == null) {
       range = [0,99999];
     }
-    const { id, showLegend, ticks } = this.props;
+
+    const { id, showLegend, ticks, brushRange } = this.props;
 
     const bottom = showLegend ? 60 : 20;
 
@@ -170,11 +177,13 @@ class StackedBar extends Component {
               // g.select(".axis--x").call(x);
             });
 
+        this.brush = brush;
+
         svg.append("g")
             .attr("class", "brush")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             .call(brush)
-            .call(brush.move, x.range());
+            .call(brush.move, brushRange);
       }
     //}.bind(this));
 
