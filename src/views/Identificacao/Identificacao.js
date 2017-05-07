@@ -159,7 +159,7 @@ class Identificacao extends Component {
                 <CardHeader>
                   Dados                  
                 </CardHeader>
-                <CardBlock>
+                <CardBlock className="p-2 text-center">
                   <Radar data={radarData} />
                 </CardBlock>
               </Card>
