@@ -36,7 +36,7 @@ class Dashboard extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md="8">
+          <Col md="6">
             <Card>
               <CardHeader>
                 Histórico de Pagamentos
@@ -51,15 +51,8 @@ class Dashboard extends Component {
               </CardBlock>
             </Card>
           </Col>
-          <Col xl="4">
-            <Card>
-              <CardHeader>
-                Participação Societaria
-              </CardHeader>
-              <CardBlock>
-                  <MirrorBar id="mirror-bar-1" />
-              </CardBlock>
-            </Card>
+          <Col md="6">
+
           </Col>
         </Row>
       </div>
