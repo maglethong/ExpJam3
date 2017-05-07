@@ -26,6 +26,8 @@ const report = {
     "nire": "xx.xxx.xxx.xxxx",
     "endereco": {
       "logradouro": "Av. Comendador Alfredo Maffei",
+      "lat": -22.0171971,
+      "lon": -47.8963773,
       "numero": "1605",
       "bairro": "Centro",
       "cidade": "São Carlos",

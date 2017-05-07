@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Card, CardBlock, CardHeader, Table } from 'reactstrap';
 import { Radar } from 'react-chartjs-2';
 import report from '../../report';
+import GoogleMapReact from 'google-map-react';
 
 function formatTimestamp(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -157,10 +158,24 @@ class Identificacao extends Component {
             <div className="col-sm-12 col-md-5">
               <Card>
                 <CardHeader>
-                  Dados                  
+                  Dados
                 </CardHeader>
                 <CardBlock className="p-2 text-center">
                   <Radar data={radarData} />
+                </CardBlock>
+              </Card>
+              <Card style={{height: 500}}>
+                <CardBlock>
+                  <GoogleMapReact
+                      bootstrapURLKeys={{key: "AIzaSyDFFsTjCL-ePoDfZsX0TiEUURa-mtJbJaw"}}
+                      center={{lat: data.endereco.lat, lng: data.endereco.lon}}
+                      zoom={16}
+
+                      margin={[60, 60, 60, 60]}
+                      marker={[{lat: data.endereco.lat, lng: data.endereco.lon}]}
+                  >
+
+                  </GoogleMapReact>
                 </CardBlock>
               </Card>
             </div>
