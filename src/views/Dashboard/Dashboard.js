@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Card, CardBlock, CardHeader, Col, Row } from 'reactstrap';
 
-import { StackedBar, MirrorBar } from 'components/Viz';
+import {
+  StackedBar,
+  // MirrorBar 
+} from 'components/Viz';
 
 class Dashboard extends Component {
   state = {
@@ -42,6 +45,13 @@ class Dashboard extends Component {
                 Histórico de Pagamentos
               </CardHeader>
               <CardBlock>
+                <p className="text-right">
+                  <label>Tempo: <select className="form-control">
+                    <option>6 meses</option>
+                    <option>12 meses</option>
+                    <option>2 anos</option>
+                  </select></label>
+                </p>
                 <StackedBar
                 range={range}
                 id="stacked-2"

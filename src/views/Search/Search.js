@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 class Search extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    // TODO implement search passing query from CNPJ input
-    console.log('Search submit');
+    // TODO: implement search passing query from CNPJ input
     this.props.router.push('/dashboard/identificacao');
   }
 

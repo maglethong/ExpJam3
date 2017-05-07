@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import * as d3 from 'd3';
 
 import { Legend } from 'components/Viz';

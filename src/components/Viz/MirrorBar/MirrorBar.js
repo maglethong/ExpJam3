@@ -14,7 +14,6 @@ class MirrorBar extends Component {
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     const socios = this.props.data;
-    console.log(socios)
 
     var x = d3.scaleBand()
         .rangeRound([0, width])

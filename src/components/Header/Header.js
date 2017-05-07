@@ -26,7 +26,6 @@ class Header extends Component {
 
   search(e) {
     e.preventDefault();
-    console.log('Search');
   }
 
   render() {
