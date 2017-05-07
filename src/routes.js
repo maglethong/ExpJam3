@@ -1,18 +1,23 @@
 import React from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-import Full from './containers/Full';
+import Full from 'containers/Full';
+import Simple from 'containers/Simple';
 
 import Dashboard from 'views/Dashboard';
+import Login from 'views/Login';
 import Example from 'views/Example';
 import Identificacao from 'views/Identificacao';
 
 export default (
   <Router history={hashHistory}>
-    <Route path="/" name="Home" component={Full}>
-      <IndexRoute component={Login} />
+    <Route path="/" component={Simple}>
+      <IndexRoute path="login" component={Login} />
+    </Route>
+    <Route path="dashboard" name="Dashboard" component={Full}>
+      <IndexRoute name="dashboard" component={Dashboard}/>
       <Route path="example" name="Example" component={Example}/>
-      <Route path="identificacao" name="Identificacao" component={Identificacao}/>
+      <Route path="identificacao" name="Identificação" component={Identificacao}/>
     </Route>
   </Router>
 );

@@ -30,9 +30,19 @@ class Header extends Component {
         <a className="navbar-brand" href="#"></a>
         <ul className="nav navbar-nav d-md-down-none mr-auto">
           <li className="nav-item px-3">
-            <IndexLink to="/"
+            <IndexLink to="/dashboard"
             className="nav-link"
             activeClassName="active">Principal</IndexLink>
+          </li>
+          <li className="nav-item px-3">
+            <Link to="/dashboard/identificacao"
+            className="nav-link"
+            activeClassName="active">Identificação</Link>
+          </li>
+          <li className="nav-item px-3">
+            <Link to="/dashboard/participacao-societaria"
+            className="nav-link"
+            activeClassName="active">Participação Societária</Link>
           </li>
           <li>
             <Link to="/example"
