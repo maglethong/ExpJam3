@@ -12,7 +12,7 @@ import Identificacao from 'views/Identificacao';
 export default (
   <Router history={hashHistory}>
     <Route path="/" component={Simple}>
-      <IndexRoute path="login" component={Login} />
+      <IndexRoute component={Login} />
     </Route>
     <Route path="dashboard" name="Dashboard" component={Full}>
       <IndexRoute name="dashboard" component={Dashboard}/>
