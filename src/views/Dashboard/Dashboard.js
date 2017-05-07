@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { Card, CardBlock, CardHeader, Col, Row } from 'reactstrap';
 
-import { StackedBar,MirrorBar } from 'components/Viz';
+import { StackedBar, MirrorBar } from 'components/Viz';
 
 class Dashboard extends Component {
+  state = {
+    range: null
+  }
+
+  handleSelection = (range) => {
+    this.setState({ range });
+  }
 
   render() {
+    const { range } = this.state;
+     
     return (
       <div className="animated fadeIn">
         <Row>
@@ -16,7 +25,12 @@ class Dashboard extends Component {
             </CardHeader>
 
             <CardBlock>
-              <StackedBar ticks={2} width="300" height="100" />
+              <StackedBar
+                onSelection={this.handleSelection}
+                id="stacked-1"
+                ticks={2}
+                width="300"
+                height="100" />
             </CardBlock>
           </Card>
           </Col>
@@ -27,9 +41,13 @@ class Dashboard extends Component {
               <CardHeader>
                 Histórico de Pagamentos
               </CardHeader>
-
               <CardBlock>
-                <StackedBar showLegend width="650" height="500" />
+                <StackedBar
+                range={range}
+                id="stacked-2"
+                showLegend
+                width="650"
+                height="500" />
               </CardBlock>
             </Card>
           </Col>
