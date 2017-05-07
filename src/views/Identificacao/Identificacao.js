@@ -166,7 +166,7 @@ class Identificacao extends Component {
               </Card>
               <Card style={{height: 500}}>
                 <CardBlock>
-                  <GoogleMapReact
+                  {/*<GoogleMapReact
                       bootstrapURLKeys={{key: "AIzaSyDFFsTjCL-ePoDfZsX0TiEUURa-mtJbJaw"}}
                       center={{lat: data.endereco.lat, lng: data.endereco.lon}}
                       zoom={16}
@@ -175,7 +175,8 @@ class Identificacao extends Component {
                       marker={[{lat: data.endereco.lat, lng: data.endereco.lon}]}
                   >
 
-                  </GoogleMapReact>
+                  </GoogleMapReact>*/}
+                  <img className="img-responsive" width="600" src="/img/maps.png" />
                 </CardBlock>
               </Card>
             </div>
