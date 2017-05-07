@@ -12,7 +12,6 @@ class Full extends Component {
       <div className="app">
         <Header />
         <div className="app-body">
-          <Sidebar {...this.props}/>
           <main className="main">
             <Breadcrumbs
               wrapperElement="ol"
