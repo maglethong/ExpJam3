@@ -1,12 +1,10 @@
 import React from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-// Containers
-import Full from './containers/Full/';
-// import Simple from './containers/Simple/'
+import Full from './containers/Full';
 
-import Dashboard from './views/Dashboard/';
-import Example from './views/Example';
+import Dashboard from 'views/Dashboard';
+import Example from 'views/Example';
 
 export default (
   <Router history={hashHistory}>

@@ -9,6 +9,19 @@ class Dashboard extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
+          <Col className="text-center">
+          <Card>
+            <CardHeader>
+              Histórico de Pagamentos
+            </CardHeader>
+
+            <CardBlock>
+              <StackedBar ticks={2} width="300" height="100" />
+            </CardBlock>
+          </Card>
+          </Col>
+        </Row>
+        <Row>
           <Col md="8">
             <Card>
               <CardHeader>
@@ -16,7 +29,7 @@ class Dashboard extends Component {
               </CardHeader>
 
               <CardBlock>
-                <div><StackedBar width="650" height="500" /></div>
+                <StackedBar showLegend width="650" height="500" />
               </CardBlock>
             </Card>
           </Col>
