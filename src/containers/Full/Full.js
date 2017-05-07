@@ -13,14 +13,7 @@ class Full extends Component {
         <Header />
         <div className="app-body">
           <main className="main">
-            <Breadcrumbs
-              wrapperElement="ol"
-              wrapperClass="breadcrumb"
-              itemClass="breadcrumb-item"
-              separator=""
-              routes={this.props.routes}
-              params={this.props.params}
-            />
+            <br />
             <div className="container-fluid">
               {this.props.children}
             </div>

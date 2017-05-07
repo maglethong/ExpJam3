@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, IndexLink } from 'react-router';
 
 class Header extends Component {
 
@@ -28,7 +29,16 @@ class Header extends Component {
         <button className="navbar-toggler mobile-sidebar-toggler d-lg-none" onClick={this.mobileSidebarToggle} type="button">&#9776;</button>
         <a className="navbar-brand" href="#"></a>
         <ul className="nav navbar-nav d-md-down-none mr-auto">
-
+          <li className="nav-item px-3">
+            <IndexLink to="/"
+            className="nav-link"
+            activeClassName="active">Principal</IndexLink>
+          </li>
+          <li>
+            <Link to="/example"
+            className="nav-link"
+            activeClassName="active">Example</Link>
+          </li>
         </ul>
       </header>
     )
