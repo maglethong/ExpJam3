@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
+import {Legend} from  '../';
 
 import './MirrorBar.css';
 
@@ -7,7 +8,7 @@ class MirrorBar extends Component {
 
   componentDidMount() {
     var svg = d3.select("#" + this.props.id),
-        margin = {top: 20, right: 60, bottom: 30, left: 40},
+        margin = {top: 20, right: 60, bottom: 60, left: 40},
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -61,7 +62,7 @@ class MirrorBar extends Component {
     series.append("rect")
         .attr("class","neg")
         .attr("x",(d,i) => x(d.index))
-        .attr("y",d => 226)
+        .attr("y",d => height/2 + 1)
         .attr("width", x.bandwidth())
         .attr("height", d => yNeg(d.spc))
         .attr("fill","red");
@@ -102,9 +103,17 @@ class MirrorBar extends Component {
 
   render() {
     const { id } = this.props;
+    const classes = [
+      {color: "blue", name: "Participação Votante"},
+      {color: "green", name: "Participação Capital"},
+      {color: "red", name: "SPC Pessoa Física"}
+    ];
+
     return (
       <div className="animated fadeIn">
-        <svg id={id} className="mirrorChart" width="660" height="500"></svg>
+        <svg id={id} className="mirrorChart" width="660" height="600">
+          <Legend classes={classes} x="0" y="580" gap="160" />
+        </svg>
       </div>
     )
   }
