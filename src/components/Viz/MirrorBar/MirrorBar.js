@@ -6,7 +6,7 @@ import './MirrorBar.css';
 class MirrorBar extends Component {
 
   componentDidMount() {
-    var svg = d3.select("#mirrorchart"),
+    var svg = d3.select("#" + this.props.id),
         margin = {top: 20, right: 60, bottom: 30, left: 40},
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
@@ -101,9 +101,10 @@ class MirrorBar extends Component {
   }
 
   render() {
+    const { id } = this.props;
     return (
       <div className="animated fadeIn">
-        <svg id="mirrorchart" className="mirrorChart" width="660" height="500"></svg>
+        <svg id={id} className="mirrorChart" width="660" height="500"></svg>
       </div>
     )
   }

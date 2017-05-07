@@ -39,7 +39,7 @@ class Dashboard extends Component {
                 Participação Societaria
               </CardHeader>
               <CardBlock>
-                  <MirrorBar />
+                  <MirrorBar id="mirror-bar-1" />
               </CardBlock>
             </Card>
           </Col>
